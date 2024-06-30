@@ -1,12 +1,11 @@
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import AppRouter from './assets/components/AppRouter/AppRouter';
 
 function App() {
   return (
-    <div className="App">
-      <Container>
-        <Button>test</Button>
-      </Container>
-    </div>
+    <Container>
+      <AppRouter />
+    </Container>
   );
 }
 
