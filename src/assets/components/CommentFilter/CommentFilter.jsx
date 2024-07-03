@@ -15,11 +15,11 @@ const CommentFilter = ({ filter, setFilter, optionsOrder, optionsQuery }) => {
     }
     let name = search.get(key);
     name = name ? name : '';
+    key = key ? key : 'id';
     setFilter({ ...filter, query: name, queryField: key });
   }, []);
 
   const filterChange = ({ queryField, query }) => {
-    console.log('qwe');
     route(`/comments/?${queryField}=${query}`);
     setFilter({ ...filter, query, queryField });
   };

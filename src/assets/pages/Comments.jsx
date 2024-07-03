@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Pagination, Spinner } from 'react-bootstrap';
 import { useFetching } from '../hooks/useFetching';
 import CommentsApi from '../api/commentsApi';
@@ -6,19 +6,18 @@ import CommentList from '../components/CommentsList/CommentList';
 import CommentFilter from '../components/CommentFilter/CommentFilter';
 import { useComments, usePagination } from '../hooks/useComments';
 import { getPagesCount } from '../utils/pages';
-import { deleteRef } from '../utils/delete';
 
 const Comments = () => {
   const [comments, setComments] = useState([]);
-  const [limit] = useState(20);
+  const [limit] = useState(30);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
   const [filter, setFilter] = useState({
     sort: 'name',
     query: '',
     queryField: 'id',
   });
+
   const sortedComments = useComments(
     comments,
     filter.sort,
@@ -29,19 +28,15 @@ const Comments = () => {
   const [fetchPosts, isPostLoading] = useFetching(async () => {
     const response = await CommentsApi.getAll(limit, currentPage);
 
-    const newComments = response.data.map((item) => {
-      return { ...item, nodeRef: createRef(null) };
-    });
-
-    setComments(newComments);
+    setComments(response.data);
 
     const totalCount = response.headers['x-total-count'];
     setTotalPages(getPagesCount(totalCount, limit));
   });
   const pagination = usePagination(totalPages, currentPage, setCurrentPage);
   const optionsOrder = [
-    { value: 'name', name: 'По Имени', id: 'name0' },
-    { value: 'body', name: 'По Комментарию', id: 'body1' },
+    { value: 'name', name: 'По Имени', id: 'order-name' },
+    { value: 'body', name: 'По Комментарию', id: 'order-body' },
   ];
   const [optionsQuery, setOptionsQuery] = useState([]);
 
@@ -51,8 +46,8 @@ const Comments = () => {
 
   useEffect(() => {
     if (comments.length) {
-      const options = Object.keys(deleteRef(comments)[0]).map((item, index) => {
-        return { value: item, name: item, id: index };
+      const options = Object.keys(comments[0]).map((item, index) => {
+        return { value: item, name: item, id: `query-${index}` };
       });
       setOptionsQuery([...options]);
     }
