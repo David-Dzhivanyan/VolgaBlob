@@ -14,9 +14,9 @@ export const useComments = (comments, sort, query, queryField = 'id') => {
 
   return useMemo(() => {
     return sortedComments.filter((comment) => {
-      return JSON.stringify(comment[queryField])
-        .toLowerCase()
-        .includes(query.toLowerCase());
+      const json = JSON.stringify(comment[queryField]);
+
+      return json ? json.toLowerCase().includes(query.toLowerCase()) : true;
     });
   }, [query, sortedComments]);
 };
