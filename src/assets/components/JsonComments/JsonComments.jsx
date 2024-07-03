@@ -10,7 +10,7 @@ const JsonComments = ({ comments }) => {
     <div className={cls.root}>
       {comments.map((comment) => (
         <div className={cls.comment} key={'json' + comment.id}>
-          <div>{JSON.stringify(comment)}</div>
+          <div className={cls.json}>{JSON.stringify(comment)}</div>
           <Button onClick={() => router(`/comments/${comment.id}`)}>
             Открыть
           </Button>

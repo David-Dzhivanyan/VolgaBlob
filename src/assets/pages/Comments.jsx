@@ -62,11 +62,17 @@ const Comments = () => {
         filter={filter}
         setFilter={setFilter}
       />
-      <div className={'mt-4'}>
-        <Button className={'col-2 me-2'} onClick={() => setDisplay('table')}>
+      <div className={'row gap-1 g-1 my-4'}>
+        <Button
+          className={'col-12 col-md-2'}
+          onClick={() => setDisplay('table')}
+        >
           Таблица
         </Button>
-        <Button className={'col-2'} onClick={() => setDisplay('json')}>
+        <Button
+          className={'col-12 col-md-2'}
+          onClick={() => setDisplay('json')}
+        >
           JSON
         </Button>
       </div>
@@ -77,7 +83,7 @@ const Comments = () => {
       ) : (
         <CommentList comments={sortedComments} display={display} />
       )}
-      <Pagination>{pagination}</Pagination>
+      <Pagination className={'flex-wrap'}>{pagination}</Pagination>
     </div>
   );
 };

@@ -1,4 +1,11 @@
-.root {}
+.root {
+  width: 100%;
+  overflow: auto;
+}
+
+.table {
+  min-width: 680px;
+}
 
 .tr {
   cursor: pointer;

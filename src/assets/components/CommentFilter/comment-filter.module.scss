@@ -1,11 +1,22 @@
 .root {
   display: flex;
-  gap: 40px;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 40px;
+  }
 }
 
 .query {
   display: flex;
   gap: 10px;
-  max-width: 300px;
+  width: 100%;
+
+  @include media-breakpoint-up(md) {
+    max-width: 300px;
+  }
 }
