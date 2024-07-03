@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import TextInput from '../UI/input/TextInput';
 import CustomSelect from '../UI/select/CustomSelect';
 import { useLocation, useNavigate } from 'react-router-dom';
+import cls from './comment-filter.module.scss';
 
 const CommentFilter = ({ filter, setFilter, optionsOrder, optionsQuery }) => {
   const location = useLocation();
@@ -25,28 +26,33 @@ const CommentFilter = ({ filter, setFilter, optionsOrder, optionsQuery }) => {
   };
 
   return (
-    <div>
-      <CustomSelect
-        options={optionsQuery}
-        defaultValue={'Поле поиска'}
-        value={filter.queryField}
-        onChange={(target) =>
-          filterChange({ queryField: target.value, query: filter.query })
-        }
-      />
-      <TextInput
-        placeholder={'Поиск поста'}
-        value={filter.query}
-        onChange={({ target }) =>
-          filterChange({ queryField: filter.queryField, query: target.value })
-        }
-      />
-      <CustomSelect
-        options={optionsOrder}
-        defaultValue={'Сортировка по'}
-        value={filter.sort}
-        onChange={(target) => setFilter({ ...filter, sort: target.value })}
-      />
+    <div className={cls.root}>
+      <div className={cls.query}>
+        <CustomSelect
+          options={optionsQuery}
+          defaultValue={'Поле поиска'}
+          value={filter.queryField}
+          onChange={(target) =>
+            filterChange({ queryField: target.value, query: filter.query })
+          }
+        />
+        <TextInput
+          placeholder={'Поиск комментария'}
+          value={filter.query}
+          onChange={({ target }) =>
+            filterChange({ queryField: filter.queryField, query: target.value })
+          }
+        />
+      </div>
+      <div className={cls.order}>
+        <CustomSelect
+          label={'Сортировка по'}
+          options={optionsOrder}
+          defaultValue={'Сортировка по'}
+          value={filter.sort}
+          onChange={(target) => setFilter({ ...filter, sort: target.value })}
+        />
+      </div>
     </div>
   );
 };

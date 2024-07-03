@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid black;
+  padding: 10px;
+}

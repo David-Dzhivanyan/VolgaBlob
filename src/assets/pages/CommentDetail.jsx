@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import CommentsApi from '../api/commentsApi';
 import { useFetching } from '../hooks/useFetching';
 import { Spinner } from 'react-bootstrap';
+import Comment from '../components/Comment/Comment';
 
 const CommentDetail = () => {
   const params = useParams();
@@ -18,17 +19,13 @@ const CommentDetail = () => {
 
   return (
     <div>
-      <h1>CommentDetail</h1>
+      <h1>Комментарий детальная</h1>
       {isLoading ? (
         <div className={'text-center'}>
           <Spinner />
         </div>
       ) : (
-        <div>
-          {comment?.id}
-          {comment?.name}
-          {comment?.body}
-        </div>
+        <Comment comment={comment} />
       )}
     </div>
   );

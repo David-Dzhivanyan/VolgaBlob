@@ -1,7 +1,5 @@
 import React, { useMemo } from 'react';
 import { Pagination } from 'react-bootstrap';
-// import { useFetching } from './useFetching';
-// import CommentsApi from '../api/commentsApi';
 
 export const useSortedComments = (comments, sort) => {
   return useMemo(() => {
@@ -29,7 +27,7 @@ export const usePagination = (total, current, setCurrent) => {
     for (let number = 1; number <= total; number++) {
       items.push(
         <Pagination.Item
-          key={number}
+          key={'pagination' + number}
           active={number === current}
           onClick={() => setCurrent(number)}
         >

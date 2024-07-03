@@ -62,8 +62,14 @@ const Comments = () => {
         filter={filter}
         setFilter={setFilter}
       />
-      <Button onClick={() => setDisplay('table')}>Таблица</Button>
-      <Button onClick={() => setDisplay('json')}>JSON</Button>
+      <div className={'mt-4'}>
+        <Button className={'col-2 me-2'} onClick={() => setDisplay('table')}>
+          Таблица
+        </Button>
+        <Button className={'col-2'} onClick={() => setDisplay('json')}>
+          JSON
+        </Button>
+      </div>
       {isPostLoading ? (
         <div className={'text-center'}>
           <Spinner />

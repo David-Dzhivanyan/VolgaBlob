@@ -1,5 +1,4 @@
 import React from 'react';
-import './commentList.scss';
 import TableComments from '../TableComments/TableComments';
 import JsonComments from '../JsonComments/JsonComments';
 
